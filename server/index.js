@@ -40,7 +40,7 @@ const todos = [
 
 // TODO: GET /api/todos
 // Response: 200, array of all todos
-listTodos = (req, res) => {
+const listTodos = (req, res) => {
   res.send(todos)
 };
 
@@ -49,7 +49,7 @@ app.get('/api/todos', listTodos)
 // TODO: GET /api/todos/:id
 // Response: 200, single todo object
 // Error: 404 if no todo with that id
-findTodo = (req, res) => {
+const findTodo = (req, res) => {
   const { id } = req.params;
   const todo = todos.find((todo) => todo.id === parseInt(id));
 
@@ -74,7 +74,7 @@ const createTodo = (req, res) => {
     return res.status(400).send({ message: 'Invalid Name' });
   }
 
-  const newTodo = { task, id: getId() };
+  const newTodo = { id: getId(), task, isDone: false };
   todos.push(newTodo);
   res.status(201).send(newTodo);
 };
